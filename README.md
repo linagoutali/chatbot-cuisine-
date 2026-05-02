@@ -1,5 +1,5 @@
 # chatbot-cuisine
-# 👨‍🍳 Chef Karim - Assistant Culinaire Intelligent
+# 👨‍🍳 Chef  - Assistant Culinaire Intelligent
 
 ## 📝 Description
 Ce projet est un chatbot interactif conçu pour aider les utilisateurs à découvrir des recettes et obtenir des conseils de cuisine. Il utilise l'intelligence artificielle pour générer des réponses personnalisées et conviviales.
