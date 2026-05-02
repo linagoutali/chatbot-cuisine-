@@ -8,12 +8,11 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# Initialisation de l'API OpenAI
+# Initialisation du client OpenAI (Version moderne)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.route('/')
 def index():
-    # Afficher la page HTML principale
     return render_template('index.html')
 
 @app.route('/chat', methods=['POST'])
@@ -23,16 +22,26 @@ def chat():
     if not user_input:
         return jsonify({"error": "Message vide"}), 400
 
+    # Définition du rôle de ton Chef
+    instructions = """
+    Tu es un Chef cuisinier professionnel et passionné. 
+    Ton rôle est d'aider les utilisateurs à cuisiner des plats délicieux.
+    - Réponds toujours de manière polie et encourageante en français.
+    - Donne des ingrédients précis et les étapes de préparation.
+    - Utilise des émojis (👨‍🍳, 🍳, 🥗).
+    - Si la question n'est pas culinaire, ramène gentiment l'utilisateur à la cuisine.
+    """
+
     try:
-        # Appel à l'API OpenAI (GPT-3.5 ou GPT-4)
+        # Appel à l'API avec la syntaxe correcte pour la version actuelle
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "Tu es un assistant utile et poli."},
+                {"role": "system", "content": instructions},
                 {"role": "user", "content": user_input}
             ]
         )
-        # Récupération de la réponse
+        
         bot_response = response.choices[0].message.content
         return jsonify({"response": bot_response})
 
