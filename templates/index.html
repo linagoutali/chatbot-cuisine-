@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chef — Chatbot Cuisine</title>
+  <link rel="stylesheet" href="mini_projetCSS.css">
+</head>
+<body>
+  <div class="chat-wrap">
+    <div class="header">
+      <span>👨‍🍳</span>
+      <h1>Chef</h1>
+    </div>
+    <div class="messages" id="msgs">
+      <div class="bubble bot">Bonjour ! Je suis le Chef. Qu'est-ce qu'on cuisine aujourd'hui ? 🍽️</div>
+    </div>
+    <div class="input-area">
+      <input id="inp" type="text" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter') send()"/>
+      <button onclick="send()">Envoyer</button>
+    </div>
+  </div>
+
+  <script>
+    const msgs = document.getElementById('msgs');
+    const inp = document.getElementById('inp');
+
+    function getLocalResponse(rawText) {
+      const text = rawText.toLowerCase();
+      const safetyKeywords = ["brûlé", "trop salé", "coupé", "cru"];
+
+      if (safetyKeywords.some(function (keyword) { return text.includes(keyword); })) {
+        if (text.includes("salé")) return "Astuce : Ajoute une pomme de terre crue ou un peu de jus de citron pour compenser le sel.";
+        if (text.includes("brûlé")) return "Si le fond a attaché, ne gratte pas ! Change de casserole et ajoute une pincée de bicarbonate.";
+        return "Fais attention en cuisinant ! Pour les coupures ou brûlures graves, passe sous l'eau froide.";
+      }
+
+      if (text.includes("oeuf") || text.includes("œuf")) {
+        return "Avec des œufs, tu peux faire : une omelette aux fines herbes, des œufs brouillés crémeux ou un shakshuka rapide.";
+      }
+
+      if (text.includes("pâtes") || text.includes("pasta")) {
+        return "Pour les pâtes : tente une sauce Carbonara, un pesto maison ou Aglio e Olio.";
+      }
+
+      if (text.includes("poulet")) {
+        return "Idée poulet : Un curry au lait de coco, un poulet rôti au thym, ou des émincés sautés au soja.";
+      }
+
+      if (text.includes("dessert") || text.includes("sucre")) {
+        return "Envie de sucré ? Tu peux improviser un fondant au chocolat, des pommes au four ou des pancakes express.";
+      }
+
+      if (text.includes("rapide") || text.includes("pressé")) {
+        return "Recette express (10 min) : Un 'One Pot Pasta' ou une salade de pois chiches au thon.";
+      }
+
+      return "Je peux te donner des idées de recettes ou des astuces de cuisine. Dis-moi ce que tu as dans ton frigo !";
+    }
+
+    function addBubble(text, role) {
+      const div = document.createElement('div');
+      div.className = 'bubble ' + role;
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      return div;
+    }
+
+    function send() {
+      const text = inp.value.trim();
+      if (!text) return;
+
+      addBubble(text, 'user');
+      inp.value = '';
+
+      const response = getLocalResponse(text);
+      
+      setTimeout(function() {
+        addBubble(response, 'bot');
+      }, 400);
+    }
+  </script>
+</body>
+</html>
