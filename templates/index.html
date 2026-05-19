@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="mini_projetCSS.css">
 </head>
 <body>
-  <div id="app-container">
+    <div id="app-container">
         <div id="header">
             <h2>🌸 ChefBot - Assistant Cuisine Douceur</h2>
             <p>✨ Recettes tunisiennes & internationales dans une ambiance pastel</p>
@@ -51,13 +51,14 @@
     </div>
 
 <script>
-        const msgs = document.getElementById('msgs');
+         const msgs = document.getElementById('msgs');
         const inp = document.getElementById('inp');
         const typing = document.getElementById('typing');
 
         const recipes = [
+            // PLATS PRINCIPAUX
             {
-                id: 1, name: "Couscous Tunisien Royal", difficulty: "difficile", time: 120,
+                id: 1, name: "Couscous Tunisien Royal", category: "plat", difficulty: "difficile", time: 120,
                 ingredients: ["semoule", "agneau", "pois chiches", "tomates", "oignons", "harissa", "épices"],
                 steps: [
                     "Prépare la semoule à la vapeur (3 fois)",
@@ -68,7 +69,7 @@
                 ]
             },
             {
-                id: 2, name: "Ojja Merguez Express", difficulty: "facile", time: 15,
+                id: 2, name: "Ojja Merguez Express", category: "plat", difficulty: "facile", time: 15,
                 ingredients: ["merguez", "oeufs", "tomates", "poivrons", "ail", "harissa"],
                 steps: [
                     "Coupe et fais revenir la merguez 3 min",
@@ -79,7 +80,7 @@
                 ]
             },
             {
-                id: 3, name: "Lablabi Réconfortant", difficulty: "facile", time: 20,
+                id: 3, name: "Lablabi Réconfortant", category: "plat", difficulty: "facile", time: 20,
                 ingredients: ["pois chiches", "pain rassis", "oeuf", "thon", "harissa", "cumin"],
                 steps: [
                     "Chauffe les pois chiches avec leur eau",
@@ -90,7 +91,7 @@
                 ]
             },
             {
-                id: 4, name: "Brik à l'œuf", difficulty: "moyen", time: 15,
+                id: 4, name: "Brik à l'œuf", category: "plat", difficulty: "moyen", time: 15,
                 ingredients: ["feuilles de brick", "oeuf", "thon", "câpres", "persil"],
                 steps: [
                     "Dispose la feuille de brick en losange",
@@ -101,7 +102,7 @@
                 ]
             },
             {
-                id: 5, name: "Mloukhia Traditionnelle", difficulty: "difficile", time: 240,
+                id: 5, name: "Mloukhia Traditionnelle", category: "plat", difficulty: "difficile", time: 240,
                 ingredients: ["poudre de mloukhia", "agneau", "huile d'olive", "ail", "laurier"],
                 steps: [
                     "Fais revenir l'agneau dans l'huile",
@@ -112,7 +113,7 @@
                 ]
             },
             {
-                id: 6, name: "Salade Mechouia", difficulty: "moyen", time: 30,
+                id: 6, name: "Salade Mechouia", category: "plat", difficulty: "moyen", time: 30,
                 ingredients: ["poivrons", "tomates", "oignons", "thon", "olives", "oeufs"],
                 steps: [
                     "Grille poivrons et tomates au four 20 min",
@@ -123,7 +124,7 @@
                 ]
             },
             {
-                id: 7, name: "Kafteji", difficulty: "moyen", time: 30,
+                id: 7, name: "Kafteji", category: "plat", difficulty: "moyen", time: 30,
                 ingredients: ["courgettes", "poivrons", "pommes de terre", "tomates", "oeufs"],
                 steps: [
                     "Fais frire chaque légume en dés séparément",
@@ -134,7 +135,7 @@
                 ]
             },
             {
-                id: 8, name: "Poulet Curry Coco", difficulty: "facile", time: 25,
+                id: 8, name: "Poulet Curry Coco", category: "plat", difficulty: "facile", time: 25,
                 ingredients: ["poulet", "lait de coco", "curry", "oignons", "riz"],
                 steps: [
                     "Fais revenir poulet et oignons 5 min",
@@ -142,11 +143,87 @@
                     "Verse le lait de coco, mijote 15 min",
                     "Sers avec du riz"
                 ]
+            },
+            // DESSERTS
+            {
+                id: 9, name: "Baklawa Tunisienne", category: "dessert", difficulty: "difficile", time: 90,
+                ingredients: ["feuilles de brick", "amandes", "noisettes", "sucre", "beurre", "miel", "eau de fleur d'oranger"],
+                steps: [
+                    "Mixer amandes et noisettes avec sucre",
+                    "Beurrer chaque feuille et superposer 5 couches",
+                    "Couper en losanges",
+                    "Déposer la farce au centre",
+                    "Enfourner 30 min à 180°C, verser le miel chaud"
+                ]
+            },
+            {
+                id: 10, name: "Makroud aux Dattes", category: "dessert", difficulty: "moyen", time: 60,
+                ingredients: ["semoule", "dattes", "beurre", "huile", "miel", "cannelle", "eau de fleur d'oranger"],
+                steps: [
+                    "Mélanger semoule et beurre fondu",
+                    "Former une pâte avec eau de fleur d'oranger",
+                    "Fourrer avec pâte de dattes à la cannelle",
+                    "Couper en losanges et frire",
+                    "Tremper dans le miel chaud"
+                ]
+            },
+            {
+                id: 11, name: "Zriga (Crème Tunisienne)", category: "dessert", difficulty: "facile", time: 15,
+                ingredients: ["lait", "maïzena", "sucre", "eau de fleur d'oranger", "pistaches"],
+                steps: [
+                    "Mélanger lait, maïzena et sucre",
+                    "Chauffer en remuant jusqu'à épaississement",
+                    "Ajouter l'eau de fleur d'oranger",
+                    "Verser dans des ramequins",
+                    "Décorer avec pistaches concassées"
+                ]
+            },
+            {
+                id: 12, name: "Assida Beida", category: "dessert", difficulty: "facile", time: 20,
+                ingredients: ["farine", "beurre", "sucre", "lait", "eau de rose"],
+                steps: [
+                    "Faire fondre le beurre",
+                    "Ajouter la farine, remuer 10 min",
+                    "Incorporer le lait progressivement",
+                    "Sucrer et parfumer à l'eau de rose",
+                    "Servir tiède avec des fruits secs"
+                ]
+            },
+            {
+                id: 13, name: "Gâteau au Yaourt Facile", category: "dessert", difficulty: "facile", time: 35,
+                ingredients: ["yaourt", "farine", "sucre", "oeufs", "huile", "levure"],
+                steps: [
+                    "Mélanger yaourt, sucre, œufs et huile",
+                    "Ajouter farine et levure",
+                    "Verser dans un moule beurré",
+                    "Cuire 25 min à 180°C"
+                ]
+            },
+            {
+                id: 14, name: "Crêpes Mille Trous (Baghrir)", category: "dessert", difficulty: "moyen", time: 30,
+                ingredients: ["semoule fine", "farine", "levure boulangère", "sel", "miel", "beurre"],
+                steps: [
+                    "Mixer semoule, farine, levure et eau",
+                    "Laisser reposer 30 min",
+                    "Cuire sur une face seulement",
+                    "Servir avec miel et beurre fondu"
+                ]
             }
         ];
 
         function findRecipes(query) {
             const q = query.toLowerCase();
+            
+            // Chercher par catégorie
+            if (q.includes('dessert') || q.includes('gâteau') || q.includes('sucré') || q.includes('pâtisserie')) {
+                return recipes.filter(r => r.category === 'dessert');
+            }
+            
+            if (q.includes('plat') || q.includes('salé') || q.includes('cuisine')) {
+                return recipes.filter(r => r.category === 'plat');
+            }
+            
+            // Chercher par ingrédient ou nom
             return recipes.filter(r => {
                 return r.ingredients.some(i => q.includes(i)) || 
                        r.name.toLowerCase().includes(q) ||
@@ -177,7 +254,8 @@
         }
 
         function formatRecipe(recipe) {
-            let html = `<b style="font-size:1.1em;">${recipe.name}</b><br>`;
+            let html = `<b style="font-size:1.1em;">${recipe.name}</b>`;
+            html += `<span class="category">${recipe.category === 'dessert' ? '🍰 Dessert' : '🍽️ Plat'}</span><br>`;
             html += `<span class="difficulty ${recipe.difficulty}">${recipe.difficulty}</span> ⏱️ ${recipe.time} min<br><br>`;
             html += `<b>Ingrédients :</b><br>${recipe.ingredients.join(', ')}<br><br>`;
             html += `<b>Préparation :</b><br>`;
@@ -201,26 +279,37 @@
                 
                 if (found.length > 0) {
                     if (found.length === 1) {
-                        addBubble(formatRecipe(found[0]), 'bot', ['Autre recette', 'Recette rapide', 'Cuisine tunisienne']);
-                    } else {
+                        addBubble(formatRecipe(found[0]), 'bot', ['Autre recette', 'Recette rapide', 'Desserts tunisiens', 'Plats salés']);
+                    } else if (found.length <= 4) {
                         let response = `<b>${found.length} recettes trouvées :</b><br><br>`;
                         found.forEach((r, i) => {
-                            response += `<b>${i+1}. ${r.name}</b> - ${r.difficulty} - ${r.time} min<br>`;
+                            response += `<b>${i+1}. ${r.name}</b>`;
+                            response += r.category === 'dessert' ? ' 🍰' : ' 🍽️';
+                            response += ` - ${r.difficulty} - ${r.time} min<br>`;
                         });
                         response += '<br>Laquelle veux-tu ?';
                         addBubble(response, 'bot', found.map(r => r.name));
+                    } else {
+                        let response = `<b>${found.length} recettes trouvées :</b><br><br>`;
+                        found.slice(0, 6).forEach((r, i) => {
+                            response += `<b>${i+1}. ${r.name}</b>`;
+                            response += r.category === 'dessert' ? ' 🍰' : ' 🍽️';
+                            response += ` - ${r.difficulty} - ${r.time} min<br>`;
+                        });
+                        response += `<br>...et ${found.length - 6} autres. Précise ta recherche !`;
+                        addBubble(response, 'bot', ['Desserts', 'Plats', 'Recette rapide', 'Recette facile']);
                     }
                 } else {
-                    addBubble("Aucune recette trouvée. Essaie avec un ingrédient (poulet, oeuf, thon, merguez...)", 'bot', 
-                        ["Couscous", "Ojja", "Brik", "Lablabi", "Mechouia"]);
+                    addBubble("Aucune recette trouvée. Essaie : poulet, oeuf, dessert, dattes, amandes...", 'bot', 
+                        ["Desserts", "Baklawa", "Makroud", "Zriga", "Plats tunisiens"]);
                 }
             }, 500 + Math.random() * 800);
         }
 
         window.onload = () => {
-            addBubble("<b>Donne-moi un ingrédient ou un type de recette</b>", 'bot', 
-                ["Poulet", "Oeuf", "Merguez", "Recette rapide", "Cuisine tunisienne"]);
+            addBubble("<b>Donne-moi un ingrédient ou choisis une catégorie</b>", 'bot', 
+                ["Desserts tunisiens", "Plats salés", "Poulet", "Oeuf", "Merguez", "Baklawa"]);
         };
 </script>
 </body>
-</html
+</html>
